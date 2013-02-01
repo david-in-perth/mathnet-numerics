@@ -390,4 +390,7 @@
   <data name="RootFindingFailedRecommendRobustNewtonRaphson" xml:space="preserve">
     <value>The algorithm has failed, exceeded the number of iterations allowed or there is no root within the provided bounds. Consider to use RobustNewtonRaphson instead.</value>
   </data>
+  <data name="ArgumentEvenNumberOfCoefficients" xml:space="preserve">
+    <value>Even number of coefficients required.</value>
+  </data>
 </root>

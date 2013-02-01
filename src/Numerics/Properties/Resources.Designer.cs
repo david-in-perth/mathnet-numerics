@@ -115,7 +115,16 @@ namespace MathNet.Numerics.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The histogram does not contain the value..
+        ///   Looks up a localized string similar to Even number of coefficients required..
+        /// </summary>
+        internal static string ArgumentEvenNumberOfCoefficients {
+            get {
+                return ResourceManager.GetString("ArgumentEvenNumberOfCoefficients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The histogram does not contains the value..
         /// </summary>
         public static string ArgumentHistogramContainsNot {
             get {
