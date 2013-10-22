@@ -36,7 +36,7 @@ namespace MathNet.Numerics.Filtering.FIR
     /// Finite Impulse Response (FIR) Filters are based on
     /// fourier series and implemented using a discrete
     /// convolution equation. FIR Filters are always
-    /// online, stable and causal. 
+    /// online, stable and causal.
     /// </summary>
     /// <remarks>
     /// System Descripton: H(z) = a0 + a1*z^-1 + a2*z^-2 + ...
