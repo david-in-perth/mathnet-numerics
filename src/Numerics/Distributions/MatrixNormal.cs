@@ -29,6 +29,7 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics.Properties;
@@ -42,7 +43,7 @@ namespace MathNet.Numerics.Distributions
     /// for the columns (K). If the dimension of M is d-by-m then V is d-by-d and K is m-by-m.
     /// <a href="http://en.wikipedia.org/wiki/Matrix_normal_distribution">Wikipedia - MatrixNormal distribution</a>.
     /// </summary>
-    public class MatrixNormal : IDistribution
+    public class MatrixNormal : IGenericDistribution<Matrix<double>>
     {
         System.Random _random;
 
@@ -218,6 +219,18 @@ namespace MathNet.Numerics.Distributions
         public Matrix<double> Sample()
         {
             return Sample(_random, _m, _v, _k);
+        }
+
+        /// <summary>
+        /// Samples an infinte sequence of matrix normal distributed random variables.
+        /// </summary>
+        /// <returns>a sequence of samples from the distribution.</returns>
+        public IEnumerable<Matrix<double>> Samples()
+        {
+            while (true)
+            {
+                yield return Sample(_random, _m, _v, _k);
+            }
         }
 
         /// <summary>

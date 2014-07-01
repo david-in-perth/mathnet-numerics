@@ -29,6 +29,7 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics.LinearAlgebra.Factorization;
@@ -44,7 +45,7 @@ namespace MathNet.Numerics.Distributions
     /// normal distribution.
     /// <a href="http://en.wikipedia.org/wiki/Wishart_distribution">Wikipedia - Wishart distribution</a>.
     /// </summary>
-    public class Wishart : IDistribution
+    public class Wishart : IGenericDistribution<Matrix<double>>
     {
         System.Random _random;
 
@@ -235,6 +236,18 @@ namespace MathNet.Numerics.Distributions
         public Matrix<double> Sample()
         {
             return DoSample(RandomSource, _degreesOfFreedom, _scale, _chol);
+        }
+
+        /// <summary>
+        /// Draws an infinite sequence of Wishart distributed random variables.
+        /// </summary>
+        /// <returns>an infinite sequence of samples from the distribution.</returns>
+        public IEnumerable<Matrix<double>> Samples()
+        {
+            while (true)
+            {
+                yield return DoSample(RandomSource, _degreesOfFreedom, _scale, _chol);
+            }
         }
 
         /// <summary>

@@ -29,6 +29,7 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using MathNet.Numerics.Properties;
 using MathNet.Numerics.Random;
@@ -39,7 +40,7 @@ namespace MathNet.Numerics.Distributions
     /// Multivariate Dirichlet distribution. For details about this distribution, see
     /// <a href="http://en.wikipedia.org/wiki/Dirichlet_distribution">Wikipedia - Dirichlet distribution</a>.
     /// </summary>
-    public class Dirichlet : IDistribution
+    public class Dirichlet : IGenericDistribution<double[]>
     {
         System.Random _random;
 
@@ -308,6 +309,18 @@ namespace MathNet.Numerics.Distributions
         public double[] Sample()
         {
             return Sample(_random, _alpha);
+        }
+
+        /// <summary>
+        /// Draws an infinite sequence of Dirichlet distributed random vectors.
+        /// </summary>
+        /// <returns>an infinite sequence of samples from the distribution.</returns>
+        public IEnumerable<double[]> Samples()
+        {
+            while (true)
+            {
+                yield return Sample(_random, _alpha);
+            }
         }
 
         /// <summary>

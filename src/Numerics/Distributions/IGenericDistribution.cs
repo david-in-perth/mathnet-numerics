@@ -1,4 +1,4 @@
-﻿// <copyright file="IDiscreteDistribution.cs" company="Math.NET">
+﻿// <copyright file="IGenericDistribution.cs" company="Math.NET">
 // Math.NET Numerics, part of the Math.NET Project
 // http://numerics.mathdotnet.com
 // http://github.com/mathnet/mathnet-numerics
@@ -31,40 +31,31 @@
 namespace MathNet.Numerics.Distributions
 {
     using System.Collections.Generic;
-
+    
     /// <summary>
-    /// Discrete Univariate Probability Distribution.
+    /// Probability Distribution.
     /// </summary>
     /// <seealso cref="IContinuousDistribution"/>
-    public interface IDiscreteDistribution : IUnivariateDistribution, IGenericDistribution<int>
+    /// <seealso cref="IDiscreteDistribution"/>
+    /// <seealso cref="IUnivariateDistribution"/>
+    public interface IGenericDistribution<T> : IDistribution
     {
         /// <summary>
-        /// Gets the mode of the distribution.
+        /// Draws a random sample from the distribution.
         /// </summary>
-        int Mode { get; }
+        /// <returns>a sample from the distribution.</returns>
+        T Sample();
+
+        // TODO: Add for v4 (adding it in v3 would break compatibility)
+        // /// <summary>
+        // /// Fills an array with samples generated from the distribution.
+        // /// </summary>
+        // void Samples(T[] values);
 
         /// <summary>
-        /// Gets the smallest element in the domain of the distribution which can be represented by an integer.
+        /// Draws a sequence of random samples from the distribution.
         /// </summary>
-        int Minimum { get; }
-
-        /// <summary>
-        /// Gets the largest element in the domain of the distribution which can be represented by an integer.
-        /// </summary>
-        int Maximum { get; }
-
-        /// <summary>
-        /// Computes the probability mass (PMF) at k, i.e. P(X = k).
-        /// </summary>
-        /// <param name="k">The location in the domain where we want to evaluate the probability mass function.</param>
-        /// <returns>the probability mass at location <paramref name="k"/>.</returns>
-        double Probability(int k);
-
-        /// <summary>
-        /// Computes the log probability mass (lnPMF) at k, i.e. ln(P(X = k)).
-        /// </summary>
-        /// <param name="k">The location in the domain where we want to evaluate the log probability mass function.</param>
-        /// <returns>the log probability mass at location <paramref name="k"/>.</returns>
-        double ProbabilityLn(int k);
+        /// <returns>an infinite sequence of samples from the distribution.</returns>
+        IEnumerable<T> Samples();
     }
 }

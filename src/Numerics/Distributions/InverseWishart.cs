@@ -29,6 +29,7 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Factorization;
 using MathNet.Numerics.Properties;
@@ -42,7 +43,7 @@ namespace MathNet.Numerics.Distributions
     /// is the conjugate prior for the covariance matrix of a multivariate normal distribution.
     /// <a href="http://en.wikipedia.org/wiki/Inverse-Wishart_distribution">Wikipedia - Inverse-Wishart distribution</a>.
     /// </summary>
-    public class InverseWishart : IDistribution
+    public class InverseWishart : IGenericDistribution<Matrix<double>>
     {
         System.Random _random;
 
@@ -226,6 +227,18 @@ namespace MathNet.Numerics.Distributions
         public Matrix<double> Sample()
         {
             return Sample(_random, _freedom, _scale);
+        }
+
+        /// <summary>
+        /// Draws an infinite sequence of inverse Wishart distributed random variables.
+        /// </summary>
+        /// <returns>an infinite sequence of samples from the distribution.</returns>
+        public IEnumerable<Matrix<double>> Samples()
+        {
+            while (true)
+            {
+                yield return Sample(_random, _freedom, _scale);
+            }
         }
 
         /// <summary>

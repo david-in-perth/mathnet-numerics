@@ -36,7 +36,7 @@ namespace MathNet.Numerics.Distributions
     /// Continuous Univariate Probability Distribution.
     /// </summary>
     /// <seealso cref="IDiscreteDistribution"/>
-    public interface IContinuousDistribution : IUnivariateDistribution
+    public interface IContinuousDistribution : IUnivariateDistribution, IGenericDistribution<double>
     {
         /// <summary>
         /// Gets the mode of the distribution.
@@ -66,23 +66,5 @@ namespace MathNet.Numerics.Distributions
         /// <param name="x">The location at which to compute the log density.</param>
         /// <returns>the log density at <paramref name="x"/>.</returns>
         double DensityLn(double x);
-
-        /// <summary>
-        /// Draws a random sample from the distribution.
-        /// </summary>
-        /// <returns>a sample from the distribution.</returns>
-        double Sample();
-
-        // TODO: Add for v4 (adding it in v3 would break compatibility)
-        // /// <summary>
-        // /// Fills an array with samples generated from the distribution.
-        // /// </summary>
-        // void Samples(double[] values);
-
-        /// <summary>
-        /// Draws a sequence of random samples from the distribution.
-        /// </summary>
-        /// <returns>an infinite sequence of samples from the distribution.</returns>
-        IEnumerable<double> Samples();
     }
 }

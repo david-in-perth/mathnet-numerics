@@ -94,7 +94,7 @@ namespace MathNet.Numerics.Distributions
     /// will be positive infinity. A completely degenerate NormalGamma distribution with known mean and precision is possible as well.</para>
     /// <a href="http://en.wikipedia.org/wiki/Normal-gamma_distribution">Wikipedia - Normal-Gamma distribution</a>.
     /// </summary>
-    public class NormalGamma : IDistribution
+    public class NormalGamma : IGenericDistribution<MeanPrecisionPair>
     {
         System.Random _random;
 

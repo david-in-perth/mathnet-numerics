@@ -48,7 +48,7 @@ namespace MathNet.Numerics.Distributions
     /// does not have to be normalized and sum to 1. The reason is that some vectors can't be exactly normalized
     /// to sum to 1 in floating point representation.
     /// </remarks>
-    public class Multinomial : IDistribution
+    public class Multinomial : IGenericDistribution<int[]>
     {
         System.Random _random;
 
